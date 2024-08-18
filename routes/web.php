@@ -12,6 +12,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\SourceController;
+
 
 
 
@@ -89,6 +91,8 @@ Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit')->middleware('auth');
 Route::put('/news/{news}', [NewsController::class, 'update'])->name('news.update')->middleware('auth');
 
+Route::get('/source', [SourceController::class, 'index'])->name('sources.index');
+Route::get('/readme', [JobController::class, 'readme'])->name('readme');
 
 
 
@@ -103,7 +107,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+    Route::get('/jobs', [JobController::class, 'index'])->name('home');
     Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
     Route::post('/jobs', [JobController::class, 'store'])->name('jobs.store');
     Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
@@ -139,6 +143,13 @@ Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
 
 Route::get('/jobs/{job}/pdf', [JobController::class, 'downloadPDF'])->name('jobs.pdf');
 Route::get('/download-pdf', [PDFController::class, 'downloadPDF'])->name('download.pdf');
+Route::get('/jobs/pdf/{job}', [JobController::class, 'downloadPDF'])->name('jobs.pdf');
 
+Route::get('/jobs/{job}/download-pdf', [JobController::class, 'downloadPDF'])->name('jobs.download-pdf');
+
+
+Route::post('/familierecht/submit', [FamilierechtController::class, 'submitForm'])->name('familierecht.submit');
+Route::post('/strafrecht/submit', [FamilierechtController::class, 'submitForm'])->name('strafrecht.submit');
+Route::post('/verkeersrecht/submit', [FamilierechtController::class, 'submitForm'])->name('verkeersrecht.submit');
 
 

@@ -1,4 +1,3 @@
-<!-- resources/views/news/show.blade.php -->
 <x-layout>
     <x-slot:heading>
         {{ $news->title }}

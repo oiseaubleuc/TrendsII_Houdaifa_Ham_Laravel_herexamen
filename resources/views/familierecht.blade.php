@@ -2,18 +2,23 @@
     <x-slot:heading>
         Familierecht
     </x-slot:heading>
+    <head>
 
     <div class="container mx-auto py-6">
         <!-- Header Section -->
-        <h2 class="text-2xl font-bold">familierecht</h2>
+        <h2 class="text-2xl font-bold">Familierecht</h2>
         <p class="mt-4 text-gray-600">Hulp bij verkeersovertredingen en verkeersgerelateerde juridische problemen.</p>
         <img src="/images/familierecht.jpeg" alt="familierecht" class="w-full mt-6 rounded-lg">
 
+        @if ($errors->has('g-recaptcha-response'))
+            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+        @endif
         <!-- Form Section -->
+
         <form action="{{ route('submit_casus') }}" method="post" enctype="multipart/form-data" class="box p-6 mt-8 border rounded-lg shadow-lg">
             @csrf
             <div class="content">
-                <h2 class="text-xl font-semibold mb-4">Dien uw casus in</h2>
+                <h2 class="text-xl font-semibold mb-4">Leg het ons uit!</h2>
 
                 <div class="mb-4">
                     <label for="naam" class="block text-gray-700">Naam:</label>
@@ -49,5 +54,33 @@
                 <button type="submit" class="submit-button bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Verzenden</button>
             </div>
         </form>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <script type="text/javascript">
+            function callbackThen(response) {
+                // read Promise object
+                response.json().then(function(data) {
+                    console.log(data);
+                    if(data.success && data.score > 0.5) {
+                        console.log('valid recpatcha');
+                    } else {
+                        document.getElementById('registerForm').addEventListener('submit', function(event) {
+                            event.preventDefault();
+                            alert('recpatcha error');
+                        });
+                    }
+                });
+            }
+
+            function callbackCatch(error){
+                console.error('Error:', error)
+            }
+        </script>
+
+        {!! htmlScriptTagJsApi([
+            'callback_then' => 'callbackThen',
+            'callback_catch' => 'callbackCatch',
+        ]) !!}
+
     </div>
+    </head>
 </x-layout>

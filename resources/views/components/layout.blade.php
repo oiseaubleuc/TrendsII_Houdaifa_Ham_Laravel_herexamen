@@ -34,6 +34,9 @@
                             <x-nav-link href="/faq" :active="request()->is('faq')">FAQ</x-nav-link>
                             <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
                             <x-nav-link href="/news" :active="request()->is('news')">Laatste Nieuws</x-nav-link>
+                            <x-nav-link href="/source" :active="request()->is('source')">Sources</x-nav-link>
+                            <x-nav-link href="/readme" :active="request()->is('readme')">Readme</x-nav-link>
+
                         </div>
                     </div>
                 </div>
@@ -63,20 +66,7 @@
                         </div>
                     </div>
 
-                    <!--<div class="dropdown">
-                         <button id="languageMenuButton">Select Language</button>
-                         <div id="languageDropdown" class="dropdown-content">
-                             <a href="#" data-lang="en">
-                                 <img src="/public/images/english-flag.png" alt="English" /> English
-                             </a>
-                             <a href="#" data-lang="es">
-                                 <img src="/public/images/dutch-icno.png" alt="Nederlands" /> Nederlands
-                             </a>
-                             <a href="#" data-lang="fr">
-                                 <img src="/public/images/french-icno.png" alt="Français" /> Français
-                             </a>
-                         </div>
-                     </div>-->
+
                     @guest
                         <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>
                         <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
@@ -119,15 +109,6 @@
             </div>
         </div>
     </nav>
-
-    <header class="bg-white shadow">
-        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 sm:flex sm:justify-between">
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900"></h1>
-            @auth
-                <x-button href="{{ route('jobs.index') }}">Formulieren</x-button>
-            @endauth
-        </div>
-    </header>
 
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">

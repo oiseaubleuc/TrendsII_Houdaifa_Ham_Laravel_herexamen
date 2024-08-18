@@ -46,8 +46,12 @@
                 </div>
                 <input type="hidden" name="type" value="verkeersrecht">
 
+
+
                 <button type="submit" class="submit-button bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Verzenden</button>
             </div>
         </form>
+
+
     </div>
 </x-layout>

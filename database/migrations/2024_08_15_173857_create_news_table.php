@@ -16,10 +16,12 @@ class CreateNewsTable extends Migration
             $table->id();
             $table->string('title');          // Title column
             $table->text('content');          // Content column
-            $table->string('image_file');      // Image column
+            $table->string('image_file');     // Image column
+            $table->string('url')->nullable(); // URL column, can be null
             $table->timestamps();             // Created_at and Updated_at columns
         });
     }
+
 
     /**
      * Reverse the migrations.

@@ -136,8 +136,18 @@ return [
            'fr' => 'Français',
            'nl' => 'Nederlands',
        ],
+       'providers' => [
+           // Other Service Providers
 
-       // More configurations...
+       ],
+       'aliases' => [
+           // Other Facades
+
+       ],
+       'Captcha' => Mews\Captcha\Facades\Captcha::class,
+       Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class
+
+
 
    ]
 
